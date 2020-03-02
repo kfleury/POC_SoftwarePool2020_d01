@@ -6,17 +6,25 @@ const cookieParser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
 
+const port = process.env.SERVER_PORT || 8080;
+
 app.use(cookieParser());
 app.use(bodyParser.text());
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '.env' });
 
 function startServer() {
   app.get('/hello', (req, res) => {
     res.send('world');
   });
   app.get('/repeat-my-fixed', (req, res) => {
-    res.send(process.env.FIXED_MESSAGE);
-    req.status = 200;
+    const str = process.env.FIXED_MESSAGE;
+    if (str === undefined) {
+      req.status = 404;
+      res.send('No Message Defined\n');
+    } else {
+      res.send(str);
+      req.status = 200;
+    }
   });
   app.get('/repeat-my-query', (req, res) => {
     const { message } = req.query;
@@ -55,7 +63,7 @@ function startServer() {
   app.get('/repeat-my-param/:message', (req, res) => {
     res.send(req.params.message);
   });
-  app.listen(process.env.SERVER_PORT);
+  app.listen(port);
 }
 
 startServer();
