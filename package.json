@@ -1,0 +1,25 @@
+{
+  "name": "poc_softwarepool2020_d01",
+  "version": "1.0.0",
+  "description": "nodejs",
+  "main": "index.js",
+  "dependencies": {
+    "package": "^1.0.1",
+    "semver": "^7.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kfleury/POC_SoftwarePool2020_d01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kfleury/POC_SoftwarePool2020_d01/issues"
+  },
+  "homepage": "https://github.com/kfleury/POC_SoftwarePool2020_d01#readme"
+}
