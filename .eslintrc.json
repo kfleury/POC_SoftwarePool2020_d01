@@ -15,7 +15,5 @@
         "sourceType": "module"
     },
     "rules": {
-        "lint": "eslint",
-        "lint:format": "eslint --fix"
     }
 }
