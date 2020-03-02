@@ -18,7 +18,6 @@
     "nodemon": "^2.0.2",
     "package": "^1.0.1",
     "postman": "^0.2.0",
-    "require": "^2.4.20",
     "semver": "^7.1.3"
   },
   "devDependencies": {
