@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 app.use(cookieParser());
 app.use(bodyParser.text());
+require('dotenv').config();
 
 function startServer() {
   app.get('/hello', (req, res) => {
