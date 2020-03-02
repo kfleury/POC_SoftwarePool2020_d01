@@ -53,7 +53,7 @@ function startServer() {
     }
   });
   app.get('/repeat-my-param/:message', (req, res) => {
-    res.send('oui');
+    res.send(req.params.message);
   });
   app.listen(8080);
 }
