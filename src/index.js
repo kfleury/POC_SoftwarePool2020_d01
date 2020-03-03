@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const port = process.env.SERVER_PORT || 8080;
+const error = process.env.ERRIR_STATUS || 400;
 
 app.use(cookieParser());
 app.use(bodyParser.text());
@@ -29,14 +30,14 @@ function startServer() {
   app.get('/repeat-my-query', (req, res) => {
     const { message } = req.query;
     if (message.length === 0) {
-      req.status = process.env.ERROR_STATUS;
+      req.status = error;
       res.send('Bad Request\n');
     } else res.send(message);
   });
   app.post('/repeat-my-body', (req, res) => {
     const str = req.body;
     if (Object.values(str).length === 0) {
-      req.status = process.env.ERROR_STATUS;
+      req.status = error;
       res.send('Bad Request\n');
     } else res.send(str);
   });
@@ -46,7 +47,7 @@ function startServer() {
     if ((Object.keys(str)[position] === 'x-message') && Object.values(str)[position].length !== 0) {
       res.send(Object.values(str)[1]);
     } else {
-      req.status = process.env.ERROR_STATUS;
+      req.status = error;
       res.send('Bad Request\n');
     }
   });
@@ -56,14 +57,18 @@ function startServer() {
     if ((Object.keys(str)[position] === 'message') && Object.values(str)[position].length !== 0) {
       res.send(Object.values(str)[1]);
     } else {
-      req.status = process.env.ERROR_STATUS;
+      req.status = error;
       res.send('Bad Request\n');
     }
   });
   app.get('/repeat-my-param/:message', (req, res) => {
     res.send(req.params.message);
   });
+  app.get('/repeat-all-my-queries', (req, res) => {
+    res.send('oui');
+  });
   app.listen(port);
 }
 
+console.log('Ready\n');
 startServer();
